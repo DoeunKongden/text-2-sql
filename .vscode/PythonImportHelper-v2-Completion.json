@@ -1,0 +1,85 @@
+[
+    {
+        "label": "OllamaLLM",
+        "importPath": "langchain_ollama.llms",
+        "description": "langchain_ollama.llms",
+        "isExtraImport": true,
+        "detail": "langchain_ollama.llms",
+        "documentation": {}
+    },
+    {
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain.prompts",
+        "description": "langchain.prompts",
+        "isExtraImport": true,
+        "detail": "langchain.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "generate_sql_query_from_text",
+        "importPath": "app.chains.test_2_sql_chain",
+        "description": "app.chains.test_2_sql_chain",
+        "isExtraImport": true,
+        "detail": "app.chains.test_2_sql_chain",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "RedirectResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "add_routes",
+        "importPath": "langserve",
+        "description": "langserve",
+        "isExtraImport": true,
+        "detail": "langserve",
+        "documentation": {}
+    },
+    {
+        "label": "generate_sql_handler",
+        "importPath": "app.handler.text_to_sql_chain_handler",
+        "description": "app.handler.text_to_sql_chain_handler",
+        "isExtraImport": true,
+        "detail": "app.handler.text_to_sql_chain_handler",
+        "documentation": {}
+    },
+    {
+        "label": "generate_sql_query_from_text",
+        "kind": 2,
+        "importPath": "app.chains.test_2_sql_chain",
+        "description": "app.chains.test_2_sql_chain",
+        "peekOfCode": "def generate_sql_query_from_text(topic: str) -> str:\n    \"\"\"Generate a SQL query from natural language input string\"\"\"\n    template = (\n        \"Convert the following natural language description into a SQL query: {topic}\"\n    )\n    prompt_template = ChatPromptTemplate.from_template(template=template)\n    chain = prompt_template | llm\n    result = chain.invoke({\"topic\": topic})\n    return result.content",
+        "detail": "app.chains.test_2_sql_chain",
+        "documentation": {}
+    },
+    {
+        "label": "llm",
+        "kind": 5,
+        "importPath": "app.chains.test_2_sql_chain",
+        "description": "app.chains.test_2_sql_chain",
+        "peekOfCode": "llm = OllamaLLM(model=\"llama3.1\", temperature=0.7, timeout=30, max_retries=2)\ndef generate_sql_query_from_text(topic: str) -> str:\n    \"\"\"Generate a SQL query from natural language input string\"\"\"\n    template = (\n        \"Convert the following natural language description into a SQL query: {topic}\"\n    )\n    prompt_template = ChatPromptTemplate.from_template(template=template)\n    chain = prompt_template | llm\n    result = chain.invoke({\"topic\": topic})\n    return result.content",
+        "detail": "app.chains.test_2_sql_chain",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app.server",
+        "description": "app.server",
+        "peekOfCode": "app = FastAPI()\n@app.get(\"/\")\nasync def redirect_root_to_docs():\n    return RedirectResponse(\"/docs\")\n# Edit this to add the chain you want to add\nadd_routes(app, generate_sql_handler,path=\"/generate-sql\")\nif __name__ == \"__main__\":\n    import uvicorn\n    uvicorn.run(app, host=\"0.0.0.0\", port=8000)",
+        "detail": "app.server",
+        "documentation": {}
+    }
+]
